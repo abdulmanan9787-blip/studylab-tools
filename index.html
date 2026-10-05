@@ -1,134 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="google-site-verification" content="J2-MHD1tSoZJ2wKZHj1uGO5T3ndpEPvtY-km-OWTAE4">
+<meta name="description" content="StudyLab Tools - Free advanced chemistry and student calculators.">
+<meta name="keywords" content="chemistry calculator, molarity, molality, normality, pH, stoichiometry, gas laws, electrochemistry, organic chemistry">
+<title>StudyLab Tools | Advanced Chemistry & Student Tools</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Arial,sans-serif;background:#f1f5f9;color:#0f172a}
+header{background:linear-gradient(135deg,#0f172a,#1e3a8a);color:#fff;padding:52px 20px;text-align:center}header h1{margin:0 0 10px;font-size:44px}header p{margin:0;color:#dbeafe;font-size:18px}
+nav{background:#172554;padding:12px;text-align:center;position:sticky;top:0;z-index:10}nav a{color:#fff;text-decoration:none;margin:0 9px;font-size:14px}
+main{max-width:1200px;margin:35px auto;padding:0 18px}.intro{text-align:center;margin-bottom:35px}.intro p{color:#475569;line-height:1.6}
+.section-title{margin:42px 0 20px;padding-bottom:10px;border-bottom:3px solid #2563eb;color:#1e3a8a}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.card{background:#fff;border-radius:15px;padding:22px;box-shadow:0 5px 20px rgba(15,23,42,.08)}.card h3{margin-top:0;color:#1d4ed8}.card p{color:#64748b;line-height:1.5}
+.formula{background:#f8fafc;padding:9px;border-left:4px solid #2563eb;margin:10px 0;font-size:14px}input,select{width:100%;padding:10px;margin:5px 0;border:1px solid #cbd5e1;border-radius:8px}
+button{width:100%;padding:10px;border:0;border-radius:8px;background:#2563eb;color:#fff;font-size:15px;cursor:pointer;margin-top:7px}button:hover{background:#1d4ed8}
+.result{margin-top:10px;padding:10px;background:#eff6ff;border-radius:8px;color:#1e3a8a;min-height:20px;line-height:1.5}.note{font-size:12px;color:#64748b}
+footer{margin-top:55px;background:#0f172a;color:#fff;text-align:center;padding:35px 15px}footer a{color:#fff;text-decoration:none;margin:0 8px}
+@media(max-width:600px){header h1{font-size:34px}nav a{display:inline-block;margin:5px}}
+</style>
+</head>
+<body>
+<header><h1>StudyLab Tools</h1><p>Free Advanced Chemistry & Student Tools</p></header>
+<nav><a href="#chemistry">Chemistry</a><a href="#physical">Physical</a><a href="#organic">Organic</a><a href="#electro">Electrochemistry</a><a href="#student">Student</a></nav>
+<main>
+<section class="intro"><h2>Advanced Chemistry Calculator Hub</h2><p>Free educational calculators for chemistry students, researchers and learners. Verify important scientific calculations independently.</p></section>
+
+<h2 id="chemistry" class="section-title">Core Chemistry & Analytical Tools</h2>
+<div class="grid">
+
+<div class="card"><h3>Molar Mass</h3><p>Supports parentheses and nested groups, e.g. Ca(OH)2 and Al2(SO4)3.</p><input id="formula" placeholder="Chemical formula e.g. Ca(OH)2"><button onclick="molarMass()">Calculate</button><div id="mmR" class="result"></div></div>
+
+<div class="card"><h3>Moles from Mass</h3><div class="formula">n = m / M</div><input id="mass" type="number" step="any" placeholder="Mass (g)"><input id="massMM" type="number" step="any" placeholder="Molar mass (g/mol)"><button onclick="molesCalc()">Calculate Moles</button><div id="molesR" class="result"></div></div>
+
+<div class="card"><h3>Molarity</h3><div class="formula">M = moles / volume(L)</div><input id="molesM" type="number" step="any" placeholder="Moles"><input id="volM" type="number" step="any" placeholder="Volume (L)"><button onclick="molarity()">Calculate</button><div id="molarityR" class="result"></div></div>
+
+<div class="card"><h3>Molality</h3><div class="formula">m = moles / kg solvent</div><input id="molesMol" type="number" step="any" placeholder="Moles solute"><input id="kgSolvent" type="number" step="any" placeholder="kg solvent"><button onclick="molality()">Calculate</button><div id="molalityR" class="result"></div></div>
+
+<div class="card"><h3>Normality</h3><div class="formula">N = M × n-factor</div><input id="normalM" type="number" step="any" placeholder="Molarity"><input id="normalF" type="number" step="any" placeholder="n-factor"><button onclick="normality()">Calculate</button><div id="normalityR" class="result"></div></div>
+
+<div class="card"><h3>Dilution</h3><div class="formula">C1V1 = C2V2</div><input id="dc1" type="number" step="any" placeholder="C1"><input id="dv1" type="number" step="any" placeholder="V1"><input id="dc2" type="number" step="any" placeholder="C2"><button onclick="dilution()">Calculate V2</button><div id="dilR" class="result"></div></div>
+
+<div class="card"><h3>pH & pOH</h3><input id="hconc" type="number" step="any" placeholder="[H+]"><button onclick="ph()">Calculate pH</button><input id="ohconc" type="number" step="any" placeholder="[OH-]"><button onclick="poh()">Calculate pOH</button><div id="phR" class="result"></div></div>
+
+<div class="card"><h3>Buffer — Henderson-Hasselbalch</h3><div class="formula">pH = pKa + log([A-]/[HA])</div><input id="pka" type="number" step="any" placeholder="pKa"><input id="base" type="number" step="any" placeholder="[A-]"><input id="acid" type="number" step="any" placeholder="[HA]"><button onclick="buffer()">Calculate pH</button><div id="bufferR" class="result"></div></div>
+
+<div class="card"><h3>Percentage Yield</h3><input id="actual" type="number" step="any" placeholder="Actual yield"><input id="theoretical" type="number" step="any" placeholder="Theoretical yield"><button onclick="yieldCalc()">Calculate</button><div id="yieldR" class="result"></div></div>
+
+<div class="card"><h3>Beer-Lambert Law</h3><div class="formula">A = εlc</div><input id="eps" type="number" step="any" placeholder="ε"><input id="path" type="number" step="any" placeholder="Path length (cm)"><input id="conc" type="number" step="any" placeholder="Concentration (M)"><button onclick="beer()">Calculate Absorbance</button><div id="beerR" class="result"></div></div>
+
+<div class="card"><h3>Empirical Formula</h3><p>Use element symbols and masses/percentages.</p><input id="efEls" placeholder="Elements: C,H,O"><input id="efMass" placeholder="Masses: 40,6.7,53.3"><button onclick="empirical()">Calculate Mole Ratios</button><div id="efR" class="result"></div></div>
+
+<div class="card"><h3>Limiting Reagent</h3><p>For aA + bB → products, enter moles and coefficients.</p><input id="lrA" type="number" step="any" placeholder="Moles A"><input id="lrCA" type="number" step="any" placeholder="Coefficient A"><input id="lrB" type="number" step="any" placeholder="Moles B"><input id="lrCB" type="number" step="any" placeholder="Coefficient B"><button onclick="limiting()">Find Limiting Reagent</button><div id="lrR" class="result"></div></div>
+
+</div>
+
+<h2 id="physical" class="section-title">Physical Chemistry</h2>
+<div class="grid">
+
+<div class="card"><h3>Ideal Gas Law</h3><div class="formula">PV = nRT</div><input id="gp" type="number" step="any" placeholder="P (atm)"><input id="gv" type="number" step="any" placeholder="V (L)"><input id="gn" type="number" step="any" placeholder="n (mol)"><input id="gt" type="number" step="any" placeholder="T (K)"><button onclick="gas()">Calculate missing value</button><div id="gasR" class="result"></div><div class="note">Enter exactly 3 values. R = 0.082057 L·atm·mol⁻¹·K⁻¹.</div></div>
+
+<div class="card"><h3>Boyle's Law</h3><div class="formula">P1V1 = P2V2</div><input id="bp1" type="number" step="any" placeholder="P1"><input id="bv1" type="number" step="any" placeholder="V1"><input id="bv2" type="number" step="any" placeholder="V2"><button onclick="boyle()">Calculate P2</button><div id="boyR" class="result"></div></div>
+
+<div class="card"><h3>Charles's Law</h3><div class="formula">V1/T1 = V2/T2</div><input id="cv1" type="number" step="any" placeholder="V1"><input id="ct1" type="number" step="any" placeholder="T1 (K)"><input id="ct2" type="number" step="any" placeholder="T2 (K)"><button onclick="charles()">Calculate V2</button><div id="charR" class="result"></div></div>
+
+<div class="card"><h3>Heat / Calorimetry</h3><div class="formula">q = mcΔT</div><input id="hm" type="number" step="any" placeholder="Mass (g)"><input id="hc" type="number" step="any" placeholder="Specific heat (J/g°C)"><input id="hd" type="number" step="any" placeholder="ΔT (°C)"><button onclick="heat()">Calculate q</button><div id="heatR" class="result"></div></div>
+
+<div class="card"><h3>First-Order Half-Life</h3><div class="formula">t½ = 0.693/k</div><input id="hk" type="number" step="any" placeholder="k"><button onclick="halfLife()">Calculate</button><div id="halfR" class="result"></div></div>
+
+<div class="card"><h3>Arrhenius Equation</h3><input id="ak1" type="number" step="any" placeholder="k1"><input id="ak2" type="number" step="any" placeholder="k2"><input id="at1" type="number" step="any" placeholder="T1 (K)"><input id="at2" type="number" step="any" placeholder="T2 (K)"><button onclick="arrhenius()">Calculate Ea</button><div id="arrR" class="result"></div></div>
+
+</div>
+
+<h2 id="organic" class="section-title">Organic Chemistry Helpers</h2>
+<div class="grid">
+
+<div class="card"><h3>Degree of Unsaturation / DBE</h3><div class="formula">DBE = (2C + 2 + N − H − X)/2</div><input id="dbeC" type="number" step="any" placeholder="Carbon C"><input id="dbeH" type="number" step="any" placeholder="Hydrogen H"><input id="dbeN" type="number" step="any" placeholder="Nitrogen N"><input id="dbeX" type="number" step="any" placeholder="Halogens X"><button onclick="dbe()">Calculate DBE</button><div id="dbeR" class="result"></div></div>
+
+<div class="card"><h3>Organic Combustion</h3><p>For CxHyOz, estimate CO2 and H2O moles from compound moles.</p><input id="oc" type="number" step="any" placeholder="Carbon atoms x"><input id="oh" type="number" step="any" placeholder="Hydrogen atoms y"><input id="om" type="number" step="any" placeholder="Moles of compound"><button onclick="combustion()">Calculate products</button><div id="combR" class="result"></div></div>
+
+</div>
+
+<h2 id="electro" class="section-title">Electrochemistry</h2>
+<div class="grid">
+
+<div class="card"><h3>Nernst Equation</h3><div class="formula">E = E° − (0.05916/n)logQ at 25°C</div><input id="ne" type="number" step="any" placeholder="E° (V)"><input id="nn" type="number" step="any" placeholder="n electrons"><input id="nq" type="number" step="any" placeholder="Q"><button onclick="nernst()">Calculate E</button><div id="nernstR" class="result"></div></div>
+
+<div class="card"><h3>Faraday's Law</h3><div class="formula">m = ItM/(nF)</div><input id="fi" type="number" step="any" placeholder="Current I (A)"><input id="ft" type="number" step="any" placeholder="Time (s)"><input id="fm" type="number" step="any" placeholder="Molar mass (g/mol)"><input id="fn" type="number" step="any" placeholder="Electrons n"><button onclick="faraday()">Calculate mass</button><div id="farR" class="result"></div></div>
+
+</div>
+
+<h2 id="student" class="section-title">Student Tools</h2>
+<div class="grid">
+
+<div class="card"><h3>GPA Calculator</h3><input id="credits" placeholder="Credits: 3,3,4"><input id="grades" placeholder="Grade points: 3.5,3,4"><button onclick="gpa()">Calculate GPA</button><div id="gpaR" class="result"></div></div>
+
+<div class="card"><h3>CGPA to Percentage</h3><input id="cg" type="number" step="any" placeholder="Your CGPA"><input id="maxcg" type="number" step="any" placeholder="Maximum CGPA"><button onclick="cgpa()">Convert</button><div id="cgR" class="result"></div></div>
+
+<div class="card"><h3>Study Planner</h3><input id="subj" placeholder="Subject"><input id="days" type="number" placeholder="Days"><input id="hours" type="number" step="any" placeholder="Hours/day"><button onclick="planner()">Create Plan</button><div id="planR" class="result"></div></div>
+
+<div class="card"><h3>Percentage Change</h3><input id="oldv" type="number" step="any" placeholder="Original value"><input id="newv" type="number" step="any" placeholder="New value"><button onclick="change()">Calculate</button><div id="changeR" class="result"></div></div>
+
+<div class="card"><h3>Temperature</h3><input id="tc" type="number" step="any" placeholder="Celsius"><button onclick="temperature()">Convert to Kelvin</button><div id="tempR" class="result"></div></div>
+
+</div>
 </main>
 
 <footer>
-  <strong>StudyLab Tools</strong><br>
-  Free Student & Chemistry Tools
-
-  <p style="margin:20px 0;">
-    <a href="about.html" style="color:#ffffff;text-decoration:none;margin:0 8px;">
-      About Us
-    </a>
-    |
-    <a href="contact.html" style="color:#ffffff;text-decoration:none;margin:0 8px;">
-      Contact Us
-    </a>
-    |
-    <a href="privacy.html" style="color:#ffffff;text-decoration:none;margin:0 8px;">
-      Privacy Policy
-    </a>
-    |
-    <a href="terms.html" style="color:#ffffff;text-decoration:none;margin:0 8px;">
-      Terms & Conditions
-    </a>
-  </p>
-
-  <span class="small" style="color:#cbd5e1;">
-    Educational resource • Verify important scientific calculations independently.
-  </span>
-
-  <p style="margin-top:20px;font-size:13px;color:#cbd5e1;">
-    © 2026 StudyLab Tools. All rights reserved.
-  </p>
+<strong>StudyLab Tools</strong><br>Free Student & Chemistry Tools
+<p style="margin:20px 0">
+<a href="about.html">About Us</a> |
+<a href="contact.html">Contact Us</a> |
+<a href="privacy.html">Privacy Policy</a> |
+<a href="terms.html">Terms & Conditions</a>
+</p>
+<span style="font-size:13px;color:#cbd5e1">Educational resource • Verify important scientific calculations independently.</span>
+<p style="font-size:13px;color:#cbd5e1">© 2026 StudyLab Tools. All rights reserved.</p>
 </footer>
 
 <script>
-function n(id){return parseFloat(document.getElementById(id).value)}
-function show(id,msg){document.getElementById(id).textContent=msg}
+const AM={H:1.008,He:4.003,Li:6.94,Be:9.012,B:10.81,C:12.011,N:14.007,O:15.999,F:18.998,Ne:20.180,Na:22.990,Mg:24.305,Al:26.982,Si:28.085,P:30.974,S:32.06,Cl:35.45,Ar:39.948,K:39.098,Ca:40.078,Sc:44.956,Ti:47.867,V:50.942,Cr:51.996,Mn:54.938,Fe:55.845,Co:58.933,Ni:58.693,Cu:63.546,Zn:65.38,Ga:69.723,Ge:72.630,As:74.922,Se:78.971,Br:79.904,Kr:83.798,Ag:107.868,Cd:112.414,In:114.818,Sn:118.710,I:126.904,Xe:131.293,Cs:132.905,Ba:137.327,Pt:195.084,Au:196.967,Hg:200.592,Pb:207.2};
+function val(id){return parseFloat(document.getElementById(id).value)}
+function out(id,msg){document.getElementById(id).textContent=msg}
+function ok(...x){return x.every(Number.isFinite)}
 
-function calc(a,b,r,m){
-  let x=n(a),y=n(b);
-  if(!isFinite(x)||!isFinite(y)||y===0)
-    return show(r,"Please enter valid values.");
-  show(r,(x/y*m).toFixed(4))
-}
-
-function multiply(a,b,r){
-  let x=n(a),y=n(b);
-  if(!isFinite(x)||!isFinite(y))
-    return show(r,"Please enter valid values.");
-  show(r,(x*y).toFixed(4))
-}
-
-function dilution(){
-  let a=n('dC1'),b=n('dV1'),c=n('dC2');
-  if(!isFinite(a)||!isFinite(b)||!isFinite(c)||c===0)
-    return show('dR','Please enter valid values.');
-  show('dR','V₂ = '+(a*b/c).toFixed(4))
-}
-
-function ph(){
-  let x=n('phA');
-  if(x<=0||!isFinite(x))
-    return show('phR','Enter a positive concentration.');
-  show('phR','pH = '+(-Math.log10(x)).toFixed(4))
-}
-
-function tempCalc(){
-  let x=n('temp');
-  if(!isFinite(x))
-    return show('tempR','Enter a valid temperature.');
-  show('tempR',x+' °C = '+(x+273.15).toFixed(2)+' K')
-}
-
-function gpa(){
-  let c=document.getElementById('credits').value.split(',').map(Number),
-      g=document.getElementById('grades').value.split(',').map(Number);
-
-  if(c.length!==g.length ||
-     c.some(x=>!isFinite(x)) ||
-     g.some(x=>!isFinite(x)) ||
-     c.reduce((a,b)=>a+b,0)<=0)
-    return show('gpaR','Enter matching values.');
-
-  let tc=c.reduce((a,b)=>a+b,0),
-      q=c.reduce((s,x,i)=>s+x*g[i],0);
-
-  show('gpaR','GPA = '+(q/tc).toFixed(2))
-}
-
-function change(){
-  let a=n('chA'),b=n('chB');
-  if(!isFinite(a)||!isFinite(b)||a===0)
-    return show('chR','Enter valid values.');
-
-  let p=(b-a)/a*100;
-  show('chR',(p>=0?'Increase: ':'Decrease: ')+Math.abs(p).toFixed(2)+'%')
-}
-
-function cgpa(){
-  let a=n('cgA'),b=n('cgB');
-  if(!isFinite(a)||!isFinite(b)||b<=0)
-    return show('cgR','Enter valid values.');
-
-  show('cgR','Approx. percentage: '+(a/b*100).toFixed(2)+'%')
-}
-
-function planner(){
-  let s=document.getElementById('subject').value.trim(),
-      d=n('days'),
-      h=n('hours');
-
-  if(!s||!isFinite(d)||!isFinite(h)||d<1||h<=0)
-    return show('planR','Please enter subject, days and daily hours.');
-
-  let out='<strong>'+s+' — '+d+' day plan</strong><br><br>';
-
-  for(let i=1;i<=d;i++){
-    let task=i<=Math.ceil(d*.25)
-      ?'Learn concepts & make notes'
-      :i<=Math.ceil(d*.65)
-      ?'Practice questions & examples'
-      :i<=Math.ceil(d*.85)
-      ?'Past papers / problem solving'
-      :'Revision & self-test';
-
-    out+='Day '+i+': '+task+' ('+h+' hour'+(h==1?'':'s')+')<br>';
+function parseFormula(s){
+ let i=0;
+ function group(){
+  let total=0;
+  while(i<s.length&&s[i]!==')'){
+   if(s[i]==='('){i++;let sub=group();if(s[i]!==')')throw Error('Unmatched parenthesis');i++;let num=readNum();for(const k in sub)total+=sub[k]*num}
+   else{
+    if(!/[A-Z]/.test(s[i]))throw Error('Invalid formula');
+    let e=s[i++];
+    if(i<s.length&&/[a-z]/.test(s[i]))e+=s[i++];
+    if(!(e in AM))throw Error('Unknown element '+e);
+    let num=readNum();total+=0;totalObj[e]=(totalObj[e]||0)+num;
+   }
   }
-
-  show('planR','');
-  document.getElementById('planR').innerHTML=out;
+  return totalObj;
+ }
+ function readNum(){let st=i;while(i<s.length&&/[0-9]/.test(s[i]))i++;return st===i?1:parseInt(s.slice(st,i))}
+ let totalObj={}; group(); if(i<s.length&&s[i]===')')throw Error('Unmatched parenthesis'); return totalObj;
 }
+function molarMass(){
+ try{let f=document.getElementById('formula').value.trim();if(!f)throw Error('Enter a formula');let atoms=parseFormula(f),m=0;for(const e in atoms)m+=AM[e]*atoms[e];out('mmR','Molar mass = '+m.toFixed(3)+' g/mol');}
+ catch(e){out('mmR',e.message)}
+}
+function molesCalc(){let m=val('mass'),mm=val('massMM');out('molesR',ok(m,mm)&&mm>0?'Moles = '+(m/mm).toFixed(5)+' mol':'Enter valid values.')}
+function molarity(){let a=val('molesM'),b=val('volM');out('molarityR',ok(a,b)&&b>0?'Molarity = '+(a/b).toFixed(5)+' M':'Enter valid values.')}
+function molality(){let a=val('molesMol'),b=val('kgSolvent');out('molalityR',ok(a,b)&&b>0?'Molality = '+(a/b).toFixed(5)+' mol/kg':'Enter valid values.')}
+function normality(){let a=val('normalM'),b=val('normalF');out('normalityR',ok(a,b)&&b>0?'Normality = '+(a*b).toFixed(5)+' N':'Enter valid values.')}
+function dilution(){let a=val('dc1'),b=val('dv1'),c=val('dc2');out('dilR',ok(a,b,c)&&c!==0?'V2 = '+(a*b/c).toFixed(5):'Enter valid values.')}
+function ph(){let x=val('hconc');out('phR',Number.isFinite(x)&&x>0?'pH = '+(-Math.log10(x)).toFixed(5):'Enter positive [H+].')}
+function poh(){let x=val('ohconc');out('phR',Number.isFinite(x)&&x>0?'pOH = '+(-Math.log10(x)).toFixed(5):'Enter positive [OH-].')}
+function buffer(){let p=val('pka'),b=val('base'),a=val('acid');out('bufferR',ok(p,b,a)&&b>0&&a>0?'pH = '+(p+Math.log10(b/a)).toFixed(5):'Enter valid values.')}
+function yieldCalc(){let a=val('actual'),t=val('theoretical');out('yieldR',ok(a,t)&&t>0?'Yield = '+(a/t*100).toFixed(2)+'%':'Enter valid values.')}
+function beer(){let e=val('eps'),l=val('path'),c=val('conc');out('beerR',ok(e,l,c)?'Absorbance = '+(e*l*c).toFixed(5):'Enter valid values.')}
+function empirical(){let es=document.getElementById('efEls').value.split(',').map(x=>x.trim()),ms=document.getElementById('efMass').value.split(',').map(Number);if(es.length!==ms.length||!es.length)return out('efR','Enter matching values.');let mol=[];for(let i=0;i<es.length;i++){if(!(es[i] in AM)||!Number.isFinite(ms[i])||ms[i]<=0)return out('efR','Check elements and masses.');mol.push(ms[i]/AM[es[i]])}let mn=Math.min(...mol),r=mol.map(x=>x/mn);out('efR','Mole ratios: '+r.map(x=>x.toFixed(2)).join(' : '))}
+function limiting(){let a=val('lrA'),ca=val('lrCA'),b=val('lrB'),cb=val('lrCB');if(!ok(a,ca,b,cb)||ca<=0||cb<=0)return out('lrR','Enter valid values.');let ra=a/ca,rb=b/cb;out('lrR',(ra<rb?'A is limiting.':'B is limiting.')+' Reaction extent = '+Math.min(ra,rb).toFixed(5))}
+function gas(){let P=val('gp'),V=val('gv'),n=val('gn'),T=val('gt'),R=.082057,k=[P,V,n,T].filter(Number.isFinite).length;if(k!==3)return out('gasR','Enter exactly 3 values and leave 1 blank.');if(!Number.isFinite(P))out('gasR','P = '+(n*R*T/V).toFixed(5)+' atm');else if(!Number.isFinite(V))out('gasR','V = '+(n*R*T/P).toFixed(5)+' L');else if(!Number.isFinite(n))out('gasR','n = '+(P*V/(R*T)).toFixed(5)+' mol');else out('gasR','T = '+(P*V/(n*R)).toFixed(5)+' K')}
+function boyle(){let a=val('bp1'),b=val('bv1'),c=val('bv2');out('boyR',ok(a,b,c)&&c!==0?'P2 = '+(a*b/c).toFixed(5):'Enter valid values.')}
+function charles(){let a=val('cv1'),b=val('ct1'),c=val('ct2');out('charR',ok(a,b,c)&&b>0?'V2 = '+(a*c/b).toFixed(5):'Enter valid Kelvin temperatures.')}
+function heat(){let a=val('hm'),b=val('hc'),c=val('hd');out('heatR',ok(a,b,c)?'q = '+(a*b*c).toFixed(5)+' J':'Enter valid values.')}
+function halfLife(){let k=val('hk');out('halfR',Number.isFinite(k)&&k>0?'t½ = '+(.693/k).toFixed(5):'Enter positive k.')}
+function arrhenius(){let k1=val('ak1'),k2=val('ak2'),t1=val('at1'),t2=val('at2');if(!ok(k1,k2,t1,t2)||k1<=0||k2<=0||t1<=0||t2<=0||t1===t2)return out('arrR','Enter valid values.');let ea=8.314*Math.log(k2/k1)/(1/t1-1/t2);out('arrR','Ea = '+ea.toFixed(3)+' J/mol = '+(ea/1000).toFixed(3)+' kJ/mol')}
+function dbe(){let c=val('dbeC'),h=val('dbeH'),n=val('dbeN'),x=val('dbeX');if(!ok(c,h,n,x))return out('dbeR','Enter all values.');out('dbeR','DBE = '+((2*c+2+n-h-x)/2).toFixed(2))}
+function combustion(){let c=val('oc'),h=val('oh'),m=val('om');if(!ok(c,h,m)||c<=0||h<0||m<=0)return out('combR','Enter valid values.');out('combR','CO2 = '+(c*m).toFixed(5)+' mol; H2O = '+(h/2*m).toFixed(5)+' mol')}
+function nernst(){let e=val('ne'),n=val('nn'),q=val('nq');out('nernstR',ok(e,n,q)&&n>0&&q>0?'E = '+(e-.05916/n*Math.log10(q)).toFixed(5)+' V':'Enter valid values.')}
+function faraday(){let I=val('fi'),t=val('ft'),M=val('fm'),n=val('fn');out('farR',ok(I,t,M,n)&&n>0?'Mass = '+(I*t*M/(n*96485)).toFixed(5)+' g':'Enter valid values.')}
+function gpa(){let c=document.getElementById('credits').value.split(',').map(Number),g=document.getElementById('grades').value.split(',').map(Number);if(c.length!==g.length||c.some(x=>!Number.isFinite(x))||g.some(x=>!Number.isFinite(x))||c.reduce((a,b)=>a+b,0)<=0)return out('gpaR','Enter matching values.');let tc=c.reduce((a,b)=>a+b,0),q=c.reduce((s,x,i)=>s+x*g[i],0);out('gpaR','GPA = '+(q/tc).toFixed(2))}
+function cgpa(){let a=val('cg'),b=val('maxcg');out('cgR',ok(a,b)&&b>0?'Approx. percentage = '+(a/b*100).toFixed(2)+'%':'Enter valid values.')}
+function planner(){let s=document.getElementById('subj').value.trim(),d=val('days'),h=val('hours');if(!s||!Number.isFinite(d)||!Number.isFinite(h)||d<1||h<=0)return out('planR','Enter subject, days and hours.');let x='<strong>'+s+' — '+d+' day plan</strong><br><br>';for(let i=1;i<=d;i++){let task=i<=Math.ceil(d*.25)?'Learn concepts & make notes':i<=Math.ceil(d*.65)?'Practice questions & examples':i<=Math.ceil(d*.85)?'Past papers / problem solving':'Revision & self-test';x+='Day '+i+': '+task+' ('+h+' hour'+(h==1?'':'s')+')<br>'}document.getElementById('planR').innerHTML=x}
+function change(){let a=val('oldv'),b=val('newv');out('changeR',ok(a,b)&&a!==0?(b>=a?'Increase: ':'Decrease: ')+Math.abs((b-a)/a*100).toFixed(2)+'%':'Enter valid values.')}
+function temperature(){let x=val('tc');out('tempR',Number.isFinite(x)?x+' °C = '+(x+273.15).toFixed(2)+' K':'Enter a valid temperature.')}
 </script>
-
 </body>
 </html>
