@@ -160,5 +160,14 @@ function change(){let a=n('chA'),b=n('chB');if(!isFinite(a)||!isFinite(b)||a===0
 function cgpa(){let a=n('cgA'),b=n('cgB');if(!isFinite(a)||!isFinite(b)||b<=0)return show('cgR','Enter valid values.');show('cgR','Approx. percentage: '+(a/b*100).toFixed(2)+'%')}
 function planner(){let s=document.getElementById('subject').value.trim(),d=n('days'),h=n('hours');if(!s||!isFinite(d)||!isFinite(h)||d<1||h<=0)return show('planR','Please enter subject, days and daily hours.');let out='<strong>'+s+' — '+d+' day plan</strong><br><br>';for(let i=1;i<=d;i++){let task=i<=Math.ceil(d*.25)?'Learn concepts & make notes':i<=Math.ceil(d*.65)?'Practice questions & examples':i<=Math.ceil(d*.85)?'Past papers / problem solving':'Revision & self-test';out+='Day '+i+': '+task+' ('+h+' hour'+(h==1?'':'s')+')<br>'}show('planR','');document.getElementById('planR').innerHTML=out}
 </script>
+  <footer>
+    <hr>
+    <p>
+        <a href="about.html">About Us</a> |
+        <a href="contact.html">Contact Us</a> |
+        <a href="privacy.html">Privacy Policy</a>
+    </p>
+    <p>© 2026 StudyLab Tools. All rights reserved.</p>
+</footer>
 </body>
 </html>
