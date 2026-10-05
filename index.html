@@ -161,12 +161,22 @@ function cgpa(){let a=n('cgA'),b=n('cgB');if(!isFinite(a)||!isFinite(b)||b<=0)re
 function planner(){let s=document.getElementById('subject').value.trim(),d=n('days'),h=n('hours');if(!s||!isFinite(d)||!isFinite(h)||d<1||h<=0)return show('planR','Please enter subject, days and daily hours.');let out='<strong>'+s+' — '+d+' day plan</strong><br><br>';for(let i=1;i<=d;i++){let task=i<=Math.ceil(d*.25)?'Learn concepts & make notes':i<=Math.ceil(d*.65)?'Practice questions & examples':i<=Math.ceil(d*.85)?'Past papers / problem solving':'Revision & self-test';out+='Day '+i+': '+task+' ('+h+' hour'+(h==1?'':'s')+')<br>'}show('planR','');document.getElementById('planR').innerHTML=out}
 </script>
   <footer>
-    <hr>
-    <p>
-        <a href="about.html">About Us</a> |
-        <a href="contact.html">Contact Us</a> |
-        <a href="privacy.html">Privacy Policy</a>
-    </p>
-    <p>© 2026 StudyLab Tools. All rights reserved.</p>
+  <strong>StudyLab Tools</strong><br>
+  Free Student & Chemistry Tools<br><br>
+
+  <p>
+    <a href="about.html">About Us</a> |
+    <a href="contact.html">Contact Us</a> |
+    <a href="privacy.html">Privacy Policy</a> |
+    <a href="terms.html">Terms & Conditions</a>
+  </p>
+
+  <span class="small" style="color:#cbd5e1">
+    Educational resource • Verify important scientific calculations independently.
+  </span>
+
+  <p style="margin-top:20px;font-size:13px;color:#cbd5e1">
+    © 2026 StudyLab Tools. All rights reserved.
+  </p>
 </body>
 </html>
