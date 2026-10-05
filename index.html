@@ -1,182 +1,134 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta name="google-site-verification" content="J2-MHD1tSoZJ2wKZHj1uGO5T3ndpEPvtY-km-OWTAE4" />
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="StudyLab Tools - free chemistry calculators, student calculators, study planner and laboratory calculation tools.">
-<meta name="keywords" content="chemistry calculator, molarity calculator, molality calculator, molar mass, dilution calculator, GPA calculator, study planner">
-<title>StudyLab Tools — Free Student & Chemistry Tools</title>
-<style>
-:root{--blue:#2563eb;--dark:#111827;--bg:#f5f7fb;--card:#fff;--muted:#64748b}
-*{box-sizing:border-box}body{margin:0;font-family:Inter,Arial,sans-serif;background:var(--bg);color:var(--dark)}
-header{background:linear-gradient(135deg,#111827,#2563eb 65%,#38bdf8);color:white;padding:70px 20px;text-align:center}
-header h1{font-size:48px;margin:10px 0}header p{font-size:19px;max-width:760px;margin:auto;line-height:1.6}
-nav{position:sticky;top:0;background:#fff;z-index:10;padding:15px;text-align:center;box-shadow:0 2px 12px #0001}
-nav a{color:#1d4ed8;text-decoration:none;font-weight:700;margin:0 12px}
-.container{max-width:1150px;margin:auto;padding:30px 18px}
-.hero-buttons{margin-top:25px}.btn{display:inline-block;padding:12px 20px;background:white;color:#1d4ed8;border-radius:9px;text-decoration:none;font-weight:bold;margin:5px}
-h2{text-align:center;font-size:32px;margin:45px 0 25px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-.card{background:var(--card);padding:23px;border-radius:16px;box-shadow:0 6px 25px #0000000d;border:1px solid #e7ebf2}
-.card h3{margin-top:0;color:#1d4ed8}.card p{color:var(--muted);line-height:1.5}
-input,textarea,select,button{width:100%;padding:12px;margin:6px 0;border:1px solid #cbd5e1;border-radius:9px;font-size:15px}
-button{background:var(--blue);color:#fff;border:0;font-weight:bold;cursor:pointer}button:hover{background:#1d4ed8}
-.result{margin-top:10px;padding:12px;border-radius:9px;background:#eff6ff;min-height:20px;font-weight:bold}
-.formula{font-family:monospace;background:#f8fafc;padding:10px;border-radius:8px}
-.tool-tag{display:inline-block;padding:5px 9px;background:#dbeafe;color:#1d4ed8;border-radius:20px;font-size:12px;font-weight:bold}
-.faq{max-width:850px;margin:auto}.faq details{background:#fff;margin:10px 0;padding:16px;border-radius:10px}
-footer{background:#111827;color:#fff;text-align:center;padding:35px 15px;margin-top:45px}
-.small{font-size:13px;color:#64748b}
-@media(max-width:600px){header h1{font-size:35px}}
-</style>
-</head>
-<body>
-
-<header>
-<span class="tool-tag">FREE EDUCATIONAL TOOLS</span>
-<h1>StudyLab Tools</h1>
-<p>Free calculators and study tools for students, chemistry learners and researchers.</p>
-<div class="hero-buttons">
-<a class="btn" href="#chemistry">Chemistry Tools</a>
-<a class="btn" href="#student">Student Tools</a>
-</div>
-</header>
-
-<nav>
-<a href="#chemistry">Chemistry</a><a href="#student">Student</a><a href="#planner">Study Planner</a><a href="#faq">FAQ</a>
-</nav>
-
-<main class="container">
-
-<h2 id="chemistry">🧪 Chemistry Calculators</h2>
-<div class="grid">
-
-<div class="card"><h3>Molarity</h3><p class="formula">M = moles / volume (L)</p>
-<input id="molA" type="number" step="any" placeholder="Moles">
-<input id="molB" type="number" step="any" placeholder="Volume (L)">
-<button onclick="calc('molA','molB','molR',1)">Calculate</button><div id="molR" class="result"></div></div>
-
-<div class="card"><h3>Molality</h3><p class="formula">m = moles / kg solvent</p>
-<input id="mtA" type="number" step="any" placeholder="Moles of solute">
-<input id="mtB" type="number" step="any" placeholder="Solvent mass (kg)">
-<button onclick="calc('mtA','mtB','mtR',1)">Calculate</button><div id="mtR" class="result"></div></div>
-
-<div class="card"><h3>Dilution</h3><p class="formula">C₁V₁ = C₂V₂</p>
-<input id="dC1" type="number" step="any" placeholder="C₁">
-<input id="dV1" type="number" step="any" placeholder="V₁">
-<input id="dC2" type="number" step="any" placeholder="C₂">
-<button onclick="dilution()">Find V₂</button><div id="dR" class="result"></div></div>
-
-<div class="card"><h3>Mass → Moles</h3>
-<input id="mmA" type="number" step="any" placeholder="Mass (g)">
-<input id="mmB" type="number" step="any" placeholder="Molar mass (g/mol)">
-<button onclick="calc('mmA','mmB','mmR',1)">Calculate</button><div id="mmR" class="result"></div></div>
-
-<div class="card"><h3>Moles → Mass</h3>
-<input id="mA" type="number" step="any" placeholder="Moles">
-<input id="mB" type="number" step="any" placeholder="Molar mass (g/mol)">
-<button onclick="multiply('mA','mB','mR')">Calculate</button><div id="mR" class="result"></div></div>
-
-<div class="card"><h3>Density</h3><p class="formula">ρ = mass / volume</p>
-<input id="denA" type="number" step="any" placeholder="Mass">
-<input id="denB" type="number" step="any" placeholder="Volume">
-<button onclick="calc('denA','denB','denR',1)">Calculate</button><div id="denR" class="result"></div></div>
-
-<div class="card"><h3>pH from [H⁺]</h3><p class="formula">pH = −log₁₀[H⁺]</p>
-<input id="phA" type="number" step="any" placeholder="[H⁺] concentration">
-<button onclick="ph()">Calculate pH</button><div id="phR" class="result"></div></div>
-
-<div class="card"><h3>Percent Yield</h3>
-<input id="pyA" type="number" step="any" placeholder="Actual yield">
-<input id="pyB" type="number" step="any" placeholder="Theoretical yield">
-<button onclick="calc('pyA','pyB','pyR',100)">Calculate</button><div id="pyR" class="result"></div></div>
-
-<div class="card"><h3>Temperature °C ↔ K</h3>
-<input id="temp" type="number" step="any" placeholder="Temperature °C">
-<button onclick="tempCalc()">Convert</button><div id="tempR" class="result"></div></div>
-
-</div>
-
-<h2 id="student">🎓 Student Tools</h2>
-<div class="grid">
-
-<div class="card"><h3>GPA Calculator</h3><p>Enter matching comma-separated credits and grade points.</p>
-<input id="credits" placeholder="Credits: 3,3,4">
-<input id="grades" placeholder="Grade points: 3.5,4,3">
-<button onclick="gpa()">Calculate GPA</button><div id="gpaR" class="result"></div></div>
-
-<div class="card"><h3>Percentage</h3>
-<input id="pcA" type="number" placeholder="Part">
-<input id="pcB" type="number" placeholder="Total">
-<button onclick="calc('pcA','pcB','pcR',100)">Calculate</button><div id="pcR" class="result"></div></div>
-
-<div class="card"><h3>Percentage Change</h3>
-<input id="chA" type="number" placeholder="Original">
-<input id="chB" type="number" placeholder="New">
-<button onclick="change()">Calculate</button><div id="chR" class="result"></div></div>
-
-<div class="card"><h3>CGPA → Percentage</h3>
-<p>Enter CGPA and the maximum CGPA used by your institution.</p>
-<input id="cgA" type="number" step="any" placeholder="Your CGPA">
-<input id="cgB" type="number" step="any" placeholder="Maximum CGPA (e.g. 4)">
-<button onclick="cgpa()">Convert</button><div id="cgR" class="result"></div></div>
-
-</div>
-
-<h2 id="planner">📚 Study Planner</h2>
-<div class="card" style="max-width:850px;margin:auto">
-<p>Generate a simple study schedule based on your available days and daily study hours.</p>
-<input id="subject" placeholder="Subject (e.g. Organic Chemistry)">
-<input id="days" type="number" min="1" placeholder="Number of days">
-<input id="hours" type="number" min="0.5" step="0.5" placeholder="Study hours per day">
-<button onclick="planner()">Generate Study Plan</button>
-<div id="planR" class="result"></div>
-</div>
-
-<h2 id="faq">❓ FAQ</h2>
-<div class="faq">
-<details><summary>Are these calculators free?</summary><p>Yes. They are designed as free educational tools.</p></details>
-<details><summary>Can I use them for laboratory work?</summary><p>They are educational calculators. Important laboratory calculations should be independently checked with your instructor or validated scientific resources.</p></details>
-<details><summary>How can this website earn money?</summary><p>Once the website has useful content and eligible traffic, possible models include advertising, relevant affiliate links, premium tools and sponsorships, subject to each platform's policies.</p></details>
-</div>
-
 </main>
+
 <footer>
-<strong>StudyLab Tools</strong><br>
-Free Student & Chemistry Tools<br><br>
-<span class="small" style="color:#cbd5e1">Educational resource • Verify important scientific calculations independently.</span>
+  <strong>StudyLab Tools</strong><br>
+  Free Student & Chemistry Tools
+
+  <p style="margin:20px 0;">
+    <a href="about.html" style="color:#ffffff;text-decoration:none;margin:0 8px;">
+      About Us
+    </a>
+    |
+    <a href="contact.html" style="color:#ffffff;text-decoration:none;margin:0 8px;">
+      Contact Us
+    </a>
+    |
+    <a href="privacy.html" style="color:#ffffff;text-decoration:none;margin:0 8px;">
+      Privacy Policy
+    </a>
+    |
+    <a href="terms.html" style="color:#ffffff;text-decoration:none;margin:0 8px;">
+      Terms & Conditions
+    </a>
+  </p>
+
+  <span class="small" style="color:#cbd5e1;">
+    Educational resource • Verify important scientific calculations independently.
+  </span>
+
+  <p style="margin-top:20px;font-size:13px;color:#cbd5e1;">
+    © 2026 StudyLab Tools. All rights reserved.
+  </p>
 </footer>
 
 <script>
 function n(id){return parseFloat(document.getElementById(id).value)}
 function show(id,msg){document.getElementById(id).textContent=msg}
-function calc(a,b,r,m){let x=n(a),y=n(b);if(!isFinite(x)||!isFinite(y)||y===0)return show(r,"Please enter valid values.");show(r,(x/y*m).toFixed(4))}
-function multiply(a,b,r){let x=n(a),y=n(b);if(!isFinite(x)||!isFinite(y))return show(r,"Please enter valid values.");show(r,(x*y).toFixed(4))}
-function dilution(){let a=n('dC1'),b=n('dV1'),c=n('dC2');if(!isFinite(a)||!isFinite(b)||!isFinite(c)||c===0)return show('dR','Please enter valid values.');show('dR','V₂ = '+(a*b/c).toFixed(4))}
-function ph(){let x=n('phA');if(x<=0||!isFinite(x))return show('phR','Enter a positive concentration.');show('phR','pH = '+(-Math.log10(x)).toFixed(4))}
-function tempCalc(){let x=n('temp');if(!isFinite(x))return show('tempR','Enter a valid temperature.');show('tempR',x+' °C = '+(x+273.15).toFixed(2)+' K')}
-function gpa(){let c=document.getElementById('credits').value.split(',').map(Number),g=document.getElementById('grades').value.split(',').map(Number);if(c.length!==g.length||c.some(x=>!isFinite(x))||g.some(x=>!isFinite(x))||c.reduce((a,b)=>a+b,0)<=0)return show('gpaR','Enter matching values.');let tc=c.reduce((a,b)=>a+b,0),q=c.reduce((s,x,i)=>s+x*g[i],0);show('gpaR','GPA = '+(q/tc).toFixed(2))}
-function change(){let a=n('chA'),b=n('chB');if(!isFinite(a)||!isFinite(b)||a===0)return show('chR','Enter valid values.');let p=(b-a)/a*100;show('chR',(p>=0?'Increase: ':'Decrease: ')+Math.abs(p).toFixed(2)+'%')}
-function cgpa(){let a=n('cgA'),b=n('cgB');if(!isFinite(a)||!isFinite(b)||b<=0)return show('cgR','Enter valid values.');show('cgR','Approx. percentage: '+(a/b*100).toFixed(2)+'%')}
-function planner(){let s=document.getElementById('subject').value.trim(),d=n('days'),h=n('hours');if(!s||!isFinite(d)||!isFinite(h)||d<1||h<=0)return show('planR','Please enter subject, days and daily hours.');let out='<strong>'+s+' — '+d+' day plan</strong><br><br>';for(let i=1;i<=d;i++){let task=i<=Math.ceil(d*.25)?'Learn concepts & make notes':i<=Math.ceil(d*.65)?'Practice questions & examples':i<=Math.ceil(d*.85)?'Past papers / problem solving':'Revision & self-test';out+='Day '+i+': '+task+' ('+h+' hour'+(h==1?'':'s')+')<br>'}show('planR','');document.getElementById('planR').innerHTML=out}
+
+function calc(a,b,r,m){
+  let x=n(a),y=n(b);
+  if(!isFinite(x)||!isFinite(y)||y===0)
+    return show(r,"Please enter valid values.");
+  show(r,(x/y*m).toFixed(4))
+}
+
+function multiply(a,b,r){
+  let x=n(a),y=n(b);
+  if(!isFinite(x)||!isFinite(y))
+    return show(r,"Please enter valid values.");
+  show(r,(x*y).toFixed(4))
+}
+
+function dilution(){
+  let a=n('dC1'),b=n('dV1'),c=n('dC2');
+  if(!isFinite(a)||!isFinite(b)||!isFinite(c)||c===0)
+    return show('dR','Please enter valid values.');
+  show('dR','V₂ = '+(a*b/c).toFixed(4))
+}
+
+function ph(){
+  let x=n('phA');
+  if(x<=0||!isFinite(x))
+    return show('phR','Enter a positive concentration.');
+  show('phR','pH = '+(-Math.log10(x)).toFixed(4))
+}
+
+function tempCalc(){
+  let x=n('temp');
+  if(!isFinite(x))
+    return show('tempR','Enter a valid temperature.');
+  show('tempR',x+' °C = '+(x+273.15).toFixed(2)+' K')
+}
+
+function gpa(){
+  let c=document.getElementById('credits').value.split(',').map(Number),
+      g=document.getElementById('grades').value.split(',').map(Number);
+
+  if(c.length!==g.length ||
+     c.some(x=>!isFinite(x)) ||
+     g.some(x=>!isFinite(x)) ||
+     c.reduce((a,b)=>a+b,0)<=0)
+    return show('gpaR','Enter matching values.');
+
+  let tc=c.reduce((a,b)=>a+b,0),
+      q=c.reduce((s,x,i)=>s+x*g[i],0);
+
+  show('gpaR','GPA = '+(q/tc).toFixed(2))
+}
+
+function change(){
+  let a=n('chA'),b=n('chB');
+  if(!isFinite(a)||!isFinite(b)||a===0)
+    return show('chR','Enter valid values.');
+
+  let p=(b-a)/a*100;
+  show('chR',(p>=0?'Increase: ':'Decrease: ')+Math.abs(p).toFixed(2)+'%')
+}
+
+function cgpa(){
+  let a=n('cgA'),b=n('cgB');
+  if(!isFinite(a)||!isFinite(b)||b<=0)
+    return show('cgR','Enter valid values.');
+
+  show('cgR','Approx. percentage: '+(a/b*100).toFixed(2)+'%')
+}
+
+function planner(){
+  let s=document.getElementById('subject').value.trim(),
+      d=n('days'),
+      h=n('hours');
+
+  if(!s||!isFinite(d)||!isFinite(h)||d<1||h<=0)
+    return show('planR','Please enter subject, days and daily hours.');
+
+  let out='<strong>'+s+' — '+d+' day plan</strong><br><br>';
+
+  for(let i=1;i<=d;i++){
+    let task=i<=Math.ceil(d*.25)
+      ?'Learn concepts & make notes'
+      :i<=Math.ceil(d*.65)
+      ?'Practice questions & examples'
+      :i<=Math.ceil(d*.85)
+      ?'Past papers / problem solving'
+      :'Revision & self-test';
+
+    out+='Day '+i+': '+task+' ('+h+' hour'+(h==1?'':'s')+')<br>';
+  }
+
+  show('planR','');
+  document.getElementById('planR').innerHTML=out;
+}
 </script>
-  <footer>
-  <strong>StudyLab Tools</strong><br>
-  Free Student & Chemistry Tools<br><br>
 
-  <p>
-    <a href="about.html">About Us</a> |
-    <a href="contact.html">Contact Us</a> |
-    <a href="privacy.html">Privacy Policy</a> |
-    <a href="terms.html">Terms & Conditions</a>
-  </p>
-
-  <span class="small" style="color:#cbd5e1">
-    Educational resource • Verify important scientific calculations independently.
-  </span>
-
-  <p style="margin-top:20px;font-size:13px;color:#cbd5e1">
-    © 2026 StudyLab Tools. All rights reserved.
-  </p>
 </body>
 </html>
